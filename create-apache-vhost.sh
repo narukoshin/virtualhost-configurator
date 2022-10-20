@@ -73,7 +73,7 @@ read server_port
 # starting to build a virtualhost
 file_to_write=$apache_path/sites-available/$conf_name
 touch $file_to_write
-echo "<VirtualHost \"*:$server_port\">" > $file_to_write
+echo "<VirtualHost *:$server_port>" > $file_to_write
 echo "      # Basic Configuration" >> $file_to_write
 echo "      ServerName $server_name" >> $file_to_write
 # checkng if the alis is not empty
@@ -107,3 +107,6 @@ chmod 600 $additional_folder_path/logs
 
 # trying to enable the config
 a2ensite $conf_name
+
+# reloading the apache2
+systemctl reload apache2

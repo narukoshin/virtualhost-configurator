@@ -86,7 +86,7 @@ echo "      DocumentRoot $root" >> $file_to_write
 if [[ "$ssl_enabled" == "y" ]]; then
     if [[ -d "$additional_folder_path/ssl" ]]; then
         echo "      # SSL Configuration" >> $file_to_write
-        echo "      SSLEngine On" >> $file
+        echo "      SSLEngine On" >> $file_to_write
         echo "      SSLCertificateFile $additional_folder_path/ssl/$ssl_public_key" >> $file_to_write
         echo "      SSLCertificateKeyFile $additional_folder_path/ssl/$ssl_private_key" >> $file_to_write
     fi

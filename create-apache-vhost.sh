@@ -191,6 +191,3 @@ fi
 
 # trying to enable the config
 a2ensite $conf_name
-
-# reloading the apache2
-systemctl reload apache2

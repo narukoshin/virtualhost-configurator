@@ -112,11 +112,16 @@ if [[ "$nginx" == "y" ]]; then
             echo "      # SSL Configuration" >> $nginx_writer
             echo "      ssl_certificate $additional_folder_path/ssl/$ssl_public_key;" >> $nginx_writer
             echo "      ssl_certificate $additional_folder_path/ssl/$ssl_private_key;" >> $nginx_writer
-            echo "      ssl_verify_client on;" >> $nginx_writer
         fi
     else
         echo "      listen $nginx_server_port;" >> $nginx_writer
         echo "      listen [::]:$nginx_server_port;" >> $nginx_writer
+    fi
+    # checking if there is a server alias
+    if [[ "$server_alias " == "" ]]; then
+        echo "      server_name $server_name;" >> $nginx_writer
+    else
+        echo "      server_name $server_name $server_alias;" >> $nginx_writer
     fi
     if [[ -d "$additional_folder_path/logs" ]]; then
         echo "" >> $nginx_writer

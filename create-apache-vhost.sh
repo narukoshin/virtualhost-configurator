@@ -111,7 +111,7 @@ if [[ "$nginx" == "y" ]]; then
             echo "" >> $nginx_writer
             echo "      # SSL Configuration" >> $nginx_writer
             echo "      ssl_certificate $additional_folder_path/ssl/$ssl_public_key;" >> $nginx_writer
-            echo "      ssl_certificate $additional_folder_path/ssl/$ssl_private_key;" >> $nginx_writer
+            echo "      ssl_certificate_key $additional_folder_path/ssl/$ssl_private_key;" >> $nginx_writer
         fi
     else
         echo "      listen $nginx_server_port;" >> $nginx_writer
@@ -172,7 +172,7 @@ echo "</VirtualHost>" >> $apache_writer
 
 # setting up proper and secure permissions
 chown www-data:www-data -R $root
-chmod 644 $root
+chmod 544 $root
 
 if [[ -d "$additional_folder_path" ]]; then
     chown www-data:www-data -R $additional_folder_path

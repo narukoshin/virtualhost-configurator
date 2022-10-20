@@ -93,3 +93,17 @@ if [[ "$ssl_enabled" == "y" ]]; then
 fi
 
 echo "</VirtualHost>" >> $file_to_write
+
+# setting up proper and secure permissions
+chown www-data:www-data -R $root
+chown www-data:www-data -R $additional_folder_path
+chmod 644 $root
+
+# making ssl keys to be read only
+chmod 444 -R $additional_folder_path/ssl
+
+# adding only a read/write access for owner to the logs folder.
+chmod 600 $additional_folder_path/logs
+
+# trying to enable the config
+a2ensite $conf_name
